@@ -21,6 +21,9 @@ db.connect((err) => {
     }
 });
 
+
+//parte crud usuarios
+
 app.post("/create", (req, res) => {
     const nro_doc = req.body.nro_doc;
     const nombre_usuario = req.body.nombre_usuario;
@@ -83,6 +86,49 @@ app.delete("/delete/:nro_doc", (req, res) => {
         }
     });
 });
+
+
+
+//parte login
+
+// app.post("/login", (req, res) => {
+//     const { username, password } = req.body;
+  
+//     // Buscar el usuario en la base de datos por nombre de usuario
+//     db.query(
+//       "SELECT * FROM usuarios WHERE nombre_usuario = ?",
+//       [username],
+//       (err, results) => {
+//         if (err) {
+//           console.error(err);
+//           res.status(500).json({ message: "Error interno del servidor" });
+//         } else if (results.length === 0) {
+//           // El usuario no existe en la base de datos
+//           res.status(401).json({ message: "Nombre de usuario incorrecto" });
+//         } else {
+//           const user = results[0];
+  
+//           // Comparar la contraseña ingresada con la contraseña almacenada en la base de datos
+//           bcrypt.compare(password, user.contrasena, (err, isMatch) => {
+//             if (err) {
+//               console.error(err);
+//               res.status(500).json({ message: "Error interno del servidor" });
+//             } else if (isMatch) {
+//               // Contraseña válida, generar un token JWT
+//               const token = jwt.sign({ username: user.nombre_usuario }, 'secret_key');
+  
+//               // Responder con el token y un mensaje de éxito
+//               res.json({ message: "Inicio de sesión exitoso", token });
+//             } else {
+//               // Contraseña incorrecta
+//               res.status(401).json({ message: "Contraseña incorrecta" });
+//             }
+//           });
+//         }
+//       }
+//     );
+//   });
+  
 
 app.listen(3001, () => {
     console.log("Corriendo en el puerto 3001");

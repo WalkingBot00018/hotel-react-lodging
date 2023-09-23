@@ -130,6 +130,7 @@ const editarusu = (val)=>{
       setusuarios(response.data);
     });
   }
+  
 
 // getusuarios();
   return (
